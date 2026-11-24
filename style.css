@@ -1,0 +1,147 @@
+/* Village のホームページ（2026-11-24）。ゲームと同じ夜空の色と金色。絵はドット絵なので、にじませずに広げる */
+:root {
+  --sky-top: #0c0a1e;
+  --sky-low: #2a1f4a;
+  --gold: #f2c84a;
+  --gold-light: #ffe8a0;
+  --purple: #7a4fc8;
+  --text: #fff6dc;
+  --sub: #c4baa8;
+  --card: rgba(255, 255, 255, 0.05);
+  --line: #3e3550;
+  --ink: #15101c;
+  --green: #3ca04a;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--sky-top);
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff8 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 9%, #fff7 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 38% 33%, #fff9 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 41%, #fff6 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 62%, #fff6 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 61% 74%, #fff8 50%, transparent 51%),
+    radial-gradient(1px 1px at 93% 86%, #fff6 50%, transparent 51%),
+    linear-gradient(180deg, var(--sky-top) 0%, var(--sky-low) 60%, #1a1430 100%);
+  background-attachment: fixed;
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+  line-height: 1.75;
+  -webkit-text-size-adjust: 100%;
+}
+
+img.pixel { image-rendering: pixelated; image-rendering: crisp-edges; }
+
+a { color: var(--gold-light); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+/* ---- 上の帯 ---- */
+header.top {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(12, 10, 30, 0.86);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+header.top .wrap { display: flex; align-items: center; gap: 12px; height: 56px; }
+.brand { display: flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: 0.04em; }
+.brand img { width: 32px; height: 32px; border-radius: 8px; }
+nav.links { margin-left: auto; display: flex; gap: 16px; font-size: 14px; }
+nav.links a { color: var(--sub); text-decoration: none; }
+nav.links a:hover { color: var(--gold); }
+nav.links a.lang { color: var(--gold); border: 1px solid var(--gold); border-radius: 999px; padding: 0 10px; }
+@media (max-width: 720px) {
+  nav.links a:not(.lang) { display: none; }
+}
+
+/* ---- いちばん上 ---- */
+.hero { padding: 56px 0 40px; }
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+.hero h1 { margin: 0; font-size: clamp(40px, 8vw, 72px); line-height: 1.05; letter-spacing: 0.02em; color: var(--gold); text-shadow: 0 3px 0 #2a1840; }
+.hero h1 small { display: block; font-size: 0.38em; color: var(--text); letter-spacing: 0.12em; margin-top: 8px; }
+.hero p.lead { font-size: 17px; margin: 20px 0 24px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-block; text-decoration: none; font-weight: 700; font-size: 16px;
+  padding: 12px 22px; border-radius: 12px;
+  color: #fffbe8; background: #e0a020; border: 2px solid #7a4a08; border-bottom-width: 6px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.35);
+}
+.btn:active { border-bottom-width: 2px; transform: translateY(4px); box-shadow: none; }
+.btn.soon { background: #3a3446; border-color: #22202a; color: var(--sub); cursor: default; }
+.note { font-size: 13px; color: var(--sub); margin-top: 12px; }
+.phones { display: flex; gap: 16px; justify-content: center; align-items: flex-end; }
+.phone {
+  position: relative; flex: 1; max-width: 230px;
+  border: 6px solid var(--ink); border-radius: 26px; overflow: hidden; background: var(--ink);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 2px #4a3d70;
+}
+.phone img { display: block; width: 100%; height: auto; }
+.phone .tag {
+  position: absolute; left: 8px; top: 8px; font-size: 12px; font-weight: 700;
+  background: rgba(21, 16, 28, 0.85); color: var(--text); padding: 2px 8px; border-radius: 6px;
+}
+.arrow { color: var(--gold); font-size: 28px; align-self: center; }
+@media (max-width: 820px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .hero { padding-top: 32px; }
+}
+
+/* ---- 見出しと節 ---- */
+section { padding: 48px 0; }
+h2 { font-size: clamp(24px, 4.4vw, 34px); margin: 0 0 8px; line-height: 1.35; }
+h2 em { font-style: normal; color: var(--gold); }
+p.sec-lead { color: var(--sub); margin: 0 0 28px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.chip { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: 14px; }
+.chip b { color: var(--gold); }
+
+/* ---- 特徴（絵と文が交互） ---- */
+.feature { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; padding: 32px 0; border-top: 1px solid var(--line); }
+.feature.flip .text { order: 2; }
+.feature h3 { font-size: clamp(22px, 3.6vw, 28px); margin: 0 0 12px; line-height: 1.4; }
+.feature h3 em { font-style: normal; color: var(--gold); }
+.feature p { margin: 0; }
+.shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.shots.one { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; }
+.shots.four { grid-template-columns: repeat(4, 1fr); gap: 8px; }   /* パソコンでは横 1 列。スマホでは 2 列（下） */
+.shots.four figcaption { font-size: 12px; }
+.shots figure { margin: 0; }
+.shots figure .phone { max-width: none; border-radius: 18px; border-width: 4px; }
+.shots figcaption { font-size: 13px; color: var(--sub); text-align: center; margin-top: 6px; }
+@media (max-width: 820px) {
+  .feature { grid-template-columns: 1fr; }
+  .feature.flip .text { order: 0; }
+  .shots.four { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+/* ---- これから ---- */
+.soon-box { background: linear-gradient(135deg, rgba(122, 79, 200, 0.25), rgba(242, 200, 74, 0.12)); border: 2px solid var(--gold); border-radius: 16px; padding: 24px; }
+.soon-box ul { margin: 12px 0 0; padding-left: 1.2em; }
+
+/* ---- 料金 ---- */
+.price { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.price .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.price .card h3 { margin: 0 0 6px; font-size: 18px; color: var(--gold); }
+@media (max-width: 820px) { .price { grid-template-columns: 1fr; } }
+
+/* ---- よくある質問 ---- */
+details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin: 10px 0; }
+details summary { cursor: pointer; font-weight: 700; }
+details p { margin: 10px 0 0; color: var(--text); }
+
+/* ---- いちばん下 ---- */
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--sub); font-size: 14px; }
+footer .links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 12px; }
+footer a { color: var(--sub); }
+
+/* 絵の大きさ（横 576）に引っぱられて、スマホの幅で列が画面より広がらないように */
+.hero .wrap > *, .feature > *, .shots figure, .phones > .phone { min-width: 0; }
+.phone img { max-width: 100%; }
+body { overflow-x: hidden; }
